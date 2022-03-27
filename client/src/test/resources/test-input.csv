@@ -1,0 +1,5 @@
+ID,Recipient,Amount,Currency
+id1,recipient1,10,KES
+id2,recipient2,50,USD
+id3,recipient3,150.35,USD
+id4,recipient4,37,NGN

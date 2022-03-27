@@ -1,0 +1,37 @@
+@startuml
+
+class Main << application >>
+class ConfigLoader << application >>
+class MainVerticle << application >>
+class CSVPaymentsReader << application >>
+class PaymentGateway << application >>
+class PaymentTransactions << application >>
+class CSVTransactionReportWriter << application >>
+class PaymentRestClient << application >>
+class PaymentService << domain >>
+class GenerateTransactionsReportUseCase << domain >>
+class MakePaymentsUseCase << domain >>
+interface PaymentGatewayPort << domain >>
+interface PaymentTransactionsPort << domain >>
+interface TransactionReportGeneratorPort << domain >>
+
+PaymentGateway -u0)- PaymentGatewayPort
+PaymentTransactions -u0)- PaymentTransactionsPort
+CSVTransactionReportWriter -u0)- TransactionReportGeneratorPort
+
+PaymentGateway ..> PaymentRestClient
+PaymentTransactions ..> PaymentRestClient
+
+PaymentService .right.> GenerateTransactionsReportUseCase
+GenerateTransactionsReportUseCase ..> TransactionReportGeneratorPort
+
+PaymentService .left.> MakePaymentsUseCase
+MakePaymentsUseCase ..> PaymentGatewayPort
+MakePaymentsUseCase ..> PaymentTransactionsPort
+
+MainVerticle ..> PaymentService
+MainVerticle .left.> CSVPaymentsReader
+Main .left.> ConfigLoader
+Main ..> MainVerticle
+
+@enduml

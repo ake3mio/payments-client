@@ -1,0 +1,5 @@
+paymentRestClientConfig:
+  apiAccount: functional-tests-payments-client
+  apiKey: functional-tests-apikey
+  clientPort: 8080
+  clientHost: payments-provider

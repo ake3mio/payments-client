@@ -1,0 +1,5 @@
+.idea
+.gitignore
+functional-tests/target
+client/target
+build-docker-image.sh
